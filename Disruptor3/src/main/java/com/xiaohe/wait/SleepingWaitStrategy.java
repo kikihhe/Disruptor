@@ -27,23 +27,22 @@ public class SleepingWaitStrategy implements WaitStrategy{
         this.sleepTimeNs = sleepTimeNs;
     }
 
-    /**
-     * 判断是否需要阻塞
-     * @param a 生产者进度, 由于生产者进度是可变的
-     * @param b 消费者进度
-     */
+
     @Override
-    public void waitFor(Sequence a, long b) {
+    public long waitFor(final long sequence, Sequence cursor) {
+        long availableSequence = 0;
         int counter = retries;
-        while (a.getValue() < b) {
+        // 如果生产者的进度一直小于消费者想要消费的进度，那就一直阻塞
+        while ((availableSequence = cursor.get()) < sequence) {
             counter = applyWaitMethod(counter);
         }
+        return availableSequence;
     }
 
     private int applyWaitMethod(int counter) {
         if (counter > 100) {
             counter--;
-        } else if (counter > 100) {
+        } else if (counter > 0) {
             counter--;
             Thread.yield();
         } else {

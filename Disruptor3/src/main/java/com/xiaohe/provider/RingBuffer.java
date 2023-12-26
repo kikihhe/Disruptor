@@ -5,7 +5,7 @@ package com.xiaohe.provider;
  * @Description :
  * @date : 2023-12-25 16:25
  */
-public class RingBuffer<E> {
+public class RingBuffer<E> implements DataProvider<E> {
     /**
      * 掩码，数组长度-1
      */
@@ -30,7 +30,9 @@ public class RingBuffer<E> {
     }
     private <A> void translateAndPublish(EventTranslatorOneArg<E, A> translator, long sequence, A arg0) {
         try {
+            // 拿到对应元素，一般为 Request
             E request = get(sequence);
+            // 将 arg0 塞到 Request 中
             translator.translateTo(request, sequence, arg0);
         } catch (Exception e) {
 

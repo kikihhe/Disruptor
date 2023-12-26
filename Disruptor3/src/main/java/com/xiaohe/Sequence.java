@@ -24,4 +24,8 @@ public class Sequence {
     public void setValue(final long value) {
         this.value = value;
     }
+
+    public long get() {
+        return value;
+    }
 }
