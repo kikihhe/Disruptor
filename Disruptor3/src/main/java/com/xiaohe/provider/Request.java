@@ -12,7 +12,15 @@ public class Request<T> {
         return data;
     }
 
-    public void setData(T data) {
+    public Request<T> setData(T data) {
         this.data = data;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "Request{" +
+                "data=" + data +
+                '}';
     }
 }

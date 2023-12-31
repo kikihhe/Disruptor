@@ -5,10 +5,11 @@ import com.xiaohe.consumer.EventHandler;
 import com.xiaohe.consumer.EventProcessor;
 import com.xiaohe.consumer.ProcessingSequenceBarrier;
 import com.xiaohe.provider.DataProvider;
+import sun.misc.Contended;
 
 /**
  * @author : 小何
- * @Description : 批处理器
+ * @Description : 消费者批处理器
  * @date : 2023-12-26 20:58
  */
 public class BatchEventProcessor<T> implements EventProcessor {

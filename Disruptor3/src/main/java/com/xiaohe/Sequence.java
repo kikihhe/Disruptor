@@ -7,7 +7,7 @@ package com.xiaohe;
  */
 public class Sequence {
     protected volatile long value;
-    static final long INITIAL_VALUE = -1;
+    public static final long INITIAL_VALUE = -1;
 
     public Sequence() {
         this(INITIAL_VALUE);
