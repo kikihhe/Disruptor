@@ -1,6 +1,7 @@
 package com.xiaohe.wait;
 
 import com.xiaohe.Sequence;
+import com.xiaohe.consumer.ProcessingSequenceBarrier;
 
 import java.util.concurrent.locks.LockSupport;
 
@@ -29,11 +30,11 @@ public class SleepingWaitStrategy implements WaitStrategy{
 
 
     @Override
-    public long waitFor(final long sequence, Sequence cursor) {
+    public long waitFor(final long sequence, Sequence cursor, Sequence dependentSequence, ProcessingSequenceBarrier sequenceBarrier) {
         long availableSequence = 0;
         int counter = retries;
         // 如果生产者的进度一直小于消费者想要消费的进度，那就一直阻塞
-        while ((availableSequence = cursor.get()) < sequence) {
+        while ((availableSequence = dependentSequence.get()) < sequence) {
             counter = applyWaitMethod(counter);
         }
         return availableSequence;

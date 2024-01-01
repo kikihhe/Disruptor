@@ -1,7 +1,11 @@
 package com.xiaohe.consumer;
 
+import com.xiaohe.FixedSequenceGroup;
 import com.xiaohe.Sequence;
+import com.xiaohe.provider.impl.SingleProducerSequencer;
 import com.xiaohe.wait.WaitStrategy;
+
+import javax.sound.midi.Sequencer;
 
 /**
  * @author : 小何
@@ -16,9 +20,24 @@ public class ProcessingSequenceBarrier {
      */
     private final Sequence cursorSequence;
 
-    public ProcessingSequenceBarrier(WaitStrategy waitStrategy, Sequence cursorSequence) {
+    private final SingleProducerSequencer sequencer;
+
+    private final Sequence dependentSequence;
+
+    public ProcessingSequenceBarrier(final SingleProducerSequencer sequencer,
+                                     final WaitStrategy waitStrategy,
+                                     final Sequence cursorSequence,
+                                     final Sequence[] dependentSequences) {
+        this.sequencer = sequencer;
         this.waitStrategy = waitStrategy;
         this.cursorSequence = cursorSequence;
+        // 不依赖于其他的消费者
+        if (dependentSequences.length == 0) {
+            dependentSequence = cursorSequence;
+        } else {
+            // 依赖于其他的消费者
+            dependentSequence = new FixedSequenceGroup(dependentSequences);
+        }
     }
 
     /**
@@ -32,6 +51,6 @@ public class ProcessingSequenceBarrier {
         if (availableSequence < sequence) {
             return availableSequence;
         }
-        return availableSequence;
+        return sequencer.getHighestPublishedSequence(sequence, availableSequence);
     }
 }

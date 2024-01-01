@@ -1,7 +1,8 @@
-package com.xiaohe.provider;
+package com.xiaohe.provider.impl;
 
 import com.xiaohe.Sequence;
 import com.xiaohe.consumer.ProcessingSequenceBarrier;
+import com.xiaohe.provider.AbstractSequencer;
 import com.xiaohe.wait.WaitStrategy;
 
 import java.util.concurrent.locks.LockSupport;
@@ -13,11 +14,34 @@ import java.util.concurrent.locks.LockSupport;
  * 2. 生产者生产数据后，使用 publish方法将生产者的序号更改，
  * @date : 2023-12-26 21:50
  */
-public class SingleProducerSequencer {
+
+abstract class SingleProducerSequencerPad extends AbstractSequencer {
+    protected long p1, p2, p3, p4, p5, p6, p7;
+
+    public SingleProducerSequencerPad(int bufferSize, WaitStrategy waitStrategy) {
+        super(bufferSize, waitStrategy);
+    }
+}
+
+abstract class SingleProducerSequencerFields extends SingleProducerSequencerPad {
+
+    public SingleProducerSequencerFields(int bufferSize, WaitStrategy waitStrategy) {
+        super(bufferSize, waitStrategy);
+    }
+
     /**
-     * 环形数组的容量
+     * 当前分配的可用序号
      */
-    protected final int bufferSize;
+    long nextValue = Sequence.INITIAL_VALUE;
+
+    /**
+     * 所有消费者的最小进度
+     */
+    long cacheValue = Sequence.INITIAL_VALUE;
+
+}
+public final class SingleProducerSequencer extends SingleProducerSequencerFields {
+    protected long p1, p2, p3, p4, p5, p6, p7;
 
     /**
      * 消费者的进度
@@ -29,11 +53,6 @@ public class SingleProducerSequencer {
      */
     protected final Sequence cursor = new Sequence(Sequence.INITIAL_VALUE);
 
-    /**
-     * 等待策略
-     * 之所以把等待策略放在这里，是为了在序号生成器中创建序号屏障，阻塞策略可以直接传递给序号屏障
-     */
-    protected final WaitStrategy waitStrategy;
 
     /**
      * 当前分配的可用序号
@@ -41,8 +60,7 @@ public class SingleProducerSequencer {
     long nextValue = Sequence.INITIAL_VALUE;
 
     public SingleProducerSequencer(int bufferSize, WaitStrategy waitStrategy) {
-        this.bufferSize = bufferSize;
-        this.waitStrategy = waitStrategy;
+        super(bufferSize, waitStrategy);
     }
 
     /**
@@ -53,6 +71,7 @@ public class SingleProducerSequencer {
         return next(1);
     }
 
+    @Override
     public long next(int n) {
         if (n < 1) {
             throw new IllegalArgumentException("n must be > 0");

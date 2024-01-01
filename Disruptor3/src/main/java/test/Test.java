@@ -6,6 +6,7 @@ import com.xiaohe.consumer.ProcessingSequenceBarrier;
 import com.xiaohe.consumer.impl.BatchEventProcessor;
 import com.xiaohe.handler.SimpleEventHandler;
 import com.xiaohe.provider.*;
+import com.xiaohe.provider.impl.SingleProducerSequencer;
 import com.xiaohe.wait.SleepingWaitStrategy;
 import com.xiaohe.wait.WaitStrategy;
 
