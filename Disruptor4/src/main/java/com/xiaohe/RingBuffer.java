@@ -152,7 +152,7 @@ public class RingBuffer<E> extends RingBufferFields<E> implements Cursored, Even
     public void publishEvent(EventTranslator<E> translator) {
         // 获得一个可用的序号
         final long sequence = sequencer.next();
-        translateAndPublish(translator, sequencer);
+        translateAndPublish(translator, sequence);
     }
 
     @Override
