@@ -34,15 +34,15 @@ public class ConsumerTest {
                 threadFactory,
                 ProducerType.SINGLE, waitStrategy
         );
-//
-//        // 创建消费者处理器，多个消费者
-//        EventHandler<Event<String>> eventHandler1 = new SimpleEventHandler<>(1);
-//        EventHandler<Event<String>> eventHandler2 = new SimpleEventHandler<>(2);
-//        EventHandler<Event<String>> eventHandler3 = new SimpleEventHandler<>(3);
-//        EventHandler<Event<String>> eventHandler4 = new SimpleEventHandler<>(4);
-//
-//        // 把所有消费者放入 EventHandlerGroup
-//        disruptor.handleEventsWith(eventHandler1, eventHandler2, eventHandler3, eventHandler4);
+
+        // 创建消费者处理器，多个消费者
+        EventHandler<Event<String>> eventHandler1 = new SimpleEventHandler<>(1);
+        EventHandler<Event<String>> eventHandler2 = new SimpleEventHandler<>(2);
+        EventHandler<Event<String>> eventHandler3 = new SimpleEventHandler<>(3);
+        EventHandler<Event<String>> eventHandler4 = new SimpleEventHandler<>(4);
+
+        // 把所有消费者放入 EventHandlerGroup
+        disruptor.handleEventsWith(eventHandler1, eventHandler2, eventHandler3, eventHandler4);
 
         // 设置异常处理器
         ExceptionHandler<Event<String>> exceptionHandler = new SimpleExceptionHandler<>();
