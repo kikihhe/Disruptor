@@ -23,7 +23,7 @@ import java.util.concurrent.ThreadFactory;
 public class MultiProducerTest {
     public static void main(String[] args) throws InterruptedException {
         SimpleEventFactory<String> eventFactory = new SimpleEventFactory<>();
-        int ringBufferSize = 128;
+        int ringBufferSize = 128 * 8;
         ThreadFactory threadFactory = Executors.defaultThreadFactory();
         WaitStrategy waitStrategy = new SleepingWaitStrategy();
 
@@ -58,18 +58,19 @@ public class MultiProducerTest {
         };
 
         // 整两个生产者线程发布数据
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 6; i++) {
             // 每个生产者线程发布10条数据
             new Thread(() -> {
-                for (int j = 0; j < 10; j++) {
+                for (int j = 0; j < 1000000000; j++) {
                     disruptor.publishEvent(eventTranslatorOneArg, Thread.currentThread().getName() + "发布的第" + (j+1) + "条数据");
                 }
             }, "生产者" + (i+1)).start();
         }
 
 
+
         // 异步生产、消费数据，让主线程睡一会
-        Thread.sleep(10000);
+        Thread.currentThread().join();
         disruptor.shutdown();
     }
 }
