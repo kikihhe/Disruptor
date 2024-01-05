@@ -160,7 +160,7 @@ public class Disruptor<T> {
     }
     private EventHandlerGroup<T> createWorkerPool(final Sequence[] barrierSequences,
                                                   final WorkHandler<? super T>[] workHandlers) {
-        SequenceBarrier sequenceBarrier = ringBuffer.newBarrier(barrierSequences);
+        final SequenceBarrier sequenceBarrier = ringBuffer.newBarrier(barrierSequences);
         final WorkerPool<T> workerPool = new WorkerPool<>(ringBuffer, sequenceBarrier, exceptionHandler, workHandlers);
         // 把消费者的信息装进仓库
         consumerRepository.add(workerPool, sequenceBarrier);

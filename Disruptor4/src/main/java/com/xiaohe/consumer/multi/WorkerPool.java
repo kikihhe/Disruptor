@@ -29,7 +29,7 @@ public final class WorkerPool<T> {
     /**
      * 此消费者池中的所有消费者
      */
-    private final WorkProcessor<T>[] workProcessors;
+    private final WorkProcessor<?>[] workProcessors;
 
     @SafeVarargs
     public WorkerPool(final RingBuffer<T> ringBuffer,

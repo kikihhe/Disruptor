@@ -1,4 +1,4 @@
-package com.xiaohe.common;
+package com.xiaohe.model;
 
 public class Event<T> {
 
