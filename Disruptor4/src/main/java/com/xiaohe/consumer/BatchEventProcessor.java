@@ -3,6 +3,8 @@ package com.xiaohe.consumer;
 
 import com.xiaohe.DataProvider;
 import com.xiaohe.common.Sequence;
+import com.xiaohe.consumer.aware.BatchStartAware;
+import com.xiaohe.consumer.aware.LifecycleAware;
 import com.xiaohe.exception.AlertException;
 import com.xiaohe.exception.handler.ExceptionHandler;
 import com.xiaohe.exception.handler.FatalExceptionHandler;

@@ -1,5 +1,7 @@
 package com.xiaohe.provider;
 
+import com.xiaohe.provider.translator.EventTranslatorOneArg;
+
 public interface EventSink<E> {
 
     void publishEvent(EventTranslator<E> translator);

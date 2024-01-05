@@ -2,12 +2,12 @@ package com.xiaohe.consumer;
 
 import com.xiaohe.RingBuffer;
 import com.xiaohe.common.Sequence;
+import com.xiaohe.consumer.aware.LifecycleAware;
 import com.xiaohe.exception.AlertException;
 import com.xiaohe.exception.handler.ExceptionHandler;
 import com.xiaohe.provider.EventReleaseAware;
 import com.xiaohe.provider.EventReleaser;
 
-import java.sql.Time;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -132,7 +132,7 @@ public class WorkProcessor<T> implements EventProcessor{
                 processedSequence = true;
             }
         }
-        //走到这里说明退出循环了，也就意味着消费者处理器要停止工作了
+        // 走到这里说明退出循环了，也就意味着消费者处理器要停止工作了
         notifyShutdown();
         running.set(false);
     }

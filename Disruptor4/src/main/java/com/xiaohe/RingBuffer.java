@@ -5,11 +5,13 @@ import com.xiaohe.common.Sequence;
 import com.xiaohe.consumer.SequenceBarrier;
 import com.xiaohe.exception.InsufficientCapacityException;
 import com.xiaohe.provider.*;
+import com.xiaohe.provider.sequencer.MultiProducerSequencer;
+import com.xiaohe.provider.sequencer.Sequencer;
+import com.xiaohe.provider.sequencer.SingleProducerSequencer;
+import com.xiaohe.provider.translator.EventTranslatorOneArg;
 import com.xiaohe.util.Util;
 import com.xiaohe.util.wait.WaitStrategy;
 import com.xiaohe.util.wait.impl.BlockWaitStrategy;
-import com.xiaohe.util.wait.impl.SleepingWaitStrategy;
-import jdk.nashorn.internal.runtime.SpillProperty;
 import sun.misc.Unsafe;
 
 /**

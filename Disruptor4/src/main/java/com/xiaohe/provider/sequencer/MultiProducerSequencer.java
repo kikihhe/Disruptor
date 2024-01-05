@@ -1,4 +1,4 @@
-package com.xiaohe.provider;
+package com.xiaohe.provider.sequencer;
 
 import com.xiaohe.common.Sequence;
 import com.xiaohe.exception.InsufficientCapacityException;

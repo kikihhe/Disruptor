@@ -1,7 +1,9 @@
-package com.xiaohe.provider;
+package com.xiaohe.provider.sequencer;
 
 import com.xiaohe.common.Sequence;
 import com.xiaohe.consumer.SequenceBarrier;
+import com.xiaohe.provider.Cursored;
+import com.xiaohe.provider.Sequenced;
 
 /**
  * @author : 小何

@@ -1,4 +1,4 @@
-package com.xiaohe.provider;
+package com.xiaohe.provider.translator;
 
 /**
  * 批量传输数据

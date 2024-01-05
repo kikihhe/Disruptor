@@ -3,7 +3,7 @@ package com.xiaohe.consumer;
 import com.xiaohe.common.FixedSequenceGroup;
 import com.xiaohe.common.Sequence;
 import com.xiaohe.exception.AlertException;
-import com.xiaohe.provider.Sequencer;
+import com.xiaohe.provider.sequencer.Sequencer;
 import com.xiaohe.util.wait.WaitStrategy;
 
 import java.util.concurrent.TimeoutException;

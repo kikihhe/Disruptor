@@ -1,4 +1,4 @@
-package com.xiaohe.provider;
+package com.xiaohe.provider.translator;
 
 /**
  * @author : 小何
