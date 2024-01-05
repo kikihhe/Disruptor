@@ -1,4 +1,4 @@
-package com.xiaohe.exception.handler;
+package com.xiaohe.consumer.handler;
 
 public interface ExceptionHandler<T> {
 

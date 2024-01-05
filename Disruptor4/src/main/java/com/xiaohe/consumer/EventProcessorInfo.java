@@ -1,6 +1,7 @@
 package com.xiaohe.consumer;
 
 import com.xiaohe.common.Sequence;
+import com.xiaohe.consumer.batch.EventHandler;
 
 import java.util.concurrent.Executor;
 
@@ -9,11 +10,11 @@ import java.util.concurrent.Executor;
  * @param <T>
  */
 class EventProcessorInfo<T> implements ConsumerInfo {
-    //消费者的事件处理器，该处理器中封装着用户定义的消费者handler
+    // 消费者的事件处理器，该处理器中封装着用户定义的消费者handler
     private final EventProcessor eventprocessor;
-    //用户定义的消费者handler
+    // 用户定义的消费者handler
     private final EventHandler<? super T> handler;
-    //消费者的序号屏障
+    // 消费者的序号屏障
     private final SequenceBarrier barrier;
     // 用来判断该消费者是不是最后的消费者
     // 这个就是和消费顺序有关系，有的消费者必须在某些消费者之后才能消费事件

@@ -1,4 +1,4 @@
-package com.xiaohe.exception.handler;
+package com.xiaohe.consumer.handler;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

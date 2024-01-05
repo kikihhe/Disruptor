@@ -1,13 +1,16 @@
-package com.xiaohe.consumer;
+package com.xiaohe.consumer.batch;
 
 
 import com.xiaohe.DataProvider;
 import com.xiaohe.common.Sequence;
+import com.xiaohe.consumer.EventProcessor;
+import com.xiaohe.consumer.SequenceBarrier;
+import com.xiaohe.consumer.handler.TimeoutHandler;
 import com.xiaohe.consumer.aware.BatchStartAware;
 import com.xiaohe.consumer.aware.LifecycleAware;
 import com.xiaohe.exception.AlertException;
-import com.xiaohe.exception.handler.ExceptionHandler;
-import com.xiaohe.exception.handler.FatalExceptionHandler;
+import com.xiaohe.consumer.handler.ExceptionHandler;
+import com.xiaohe.consumer.handler.FatalExceptionHandler;
 
 
 import java.util.concurrent.TimeoutException;

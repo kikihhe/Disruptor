@@ -1,4 +1,4 @@
-package com.xiaohe.consumer;
+package com.xiaohe.consumer.multi;
 
 /**
  * @author : 小何

@@ -1,4 +1,4 @@
-package com.xiaohe.consumer;
+package com.xiaohe.consumer.batch;
 
 /**
  * 消费者事件处理器，用户实现

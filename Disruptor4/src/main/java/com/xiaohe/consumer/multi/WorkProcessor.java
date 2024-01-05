@@ -1,10 +1,13 @@
-package com.xiaohe.consumer;
+package com.xiaohe.consumer.multi;
 
 import com.xiaohe.RingBuffer;
 import com.xiaohe.common.Sequence;
+import com.xiaohe.consumer.EventProcessor;
+import com.xiaohe.consumer.SequenceBarrier;
+import com.xiaohe.consumer.handler.TimeoutHandler;
 import com.xiaohe.consumer.aware.LifecycleAware;
 import com.xiaohe.exception.AlertException;
-import com.xiaohe.exception.handler.ExceptionHandler;
+import com.xiaohe.consumer.handler.ExceptionHandler;
 import com.xiaohe.provider.EventReleaseAware;
 import com.xiaohe.provider.EventReleaser;
 
@@ -16,7 +19,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @Description :
  * @date : 2024-01-03 19:59
  */
-public class WorkProcessor<T> implements EventProcessor{
+public class WorkProcessor<T> implements EventProcessor {
     /**
      * 此线程是否正在工作
      */

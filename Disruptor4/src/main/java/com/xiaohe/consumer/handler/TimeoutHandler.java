@@ -1,4 +1,4 @@
-package com.xiaohe.consumer;
+package com.xiaohe.consumer.handler;
 
 public interface TimeoutHandler {
     void onTimeout(long sequence) throws Exception;

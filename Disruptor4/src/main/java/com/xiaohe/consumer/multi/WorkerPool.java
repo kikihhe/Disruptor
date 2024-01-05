@@ -1,9 +1,10 @@
-package com.xiaohe.consumer;
+package com.xiaohe.consumer.multi;
 
 import com.xiaohe.RingBuffer;
 import com.xiaohe.common.EventFactory;
 import com.xiaohe.common.Sequence;
-import com.xiaohe.exception.handler.ExceptionHandler;
+import com.xiaohe.consumer.SequenceBarrier;
+import com.xiaohe.consumer.handler.ExceptionHandler;
 import com.xiaohe.util.Util;
 import com.xiaohe.util.wait.impl.BlockWaitStrategy;
 
@@ -34,7 +35,7 @@ public final class WorkerPool<T> {
     public WorkerPool(final RingBuffer<T> ringBuffer,
                       final SequenceBarrier sequenceBarrier,
                       final ExceptionHandler<? super T> exceptionHandler,
-                      final WorkHandler<? super T> ... workHandlers) {
+                      final WorkHandler<? super T>... workHandlers) {
         this.ringBuffer = ringBuffer;
         final int numWorkers = workHandlers.length;
         workProcessors = new WorkProcessor[numWorkers];

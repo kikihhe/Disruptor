@@ -1,6 +1,10 @@
 package com.xiaohe.consumer;
 
 import com.xiaohe.common.Sequence;
+import com.xiaohe.consumer.batch.EventHandler;
+import com.xiaohe.consumer.multi.WorkerPool;
+import com.xiaohe.consumer.multi.WorkerPoolInfo;
+
 
 import java.util.*;
 

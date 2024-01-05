@@ -1,6 +1,8 @@
-package com.xiaohe.consumer;
+package com.xiaohe.consumer.multi;
 
 import com.xiaohe.common.Sequence;
+import com.xiaohe.consumer.ConsumerInfo;
+import com.xiaohe.consumer.SequenceBarrier;
 
 import java.util.concurrent.Executor;
 
@@ -8,7 +10,7 @@ import java.util.concurrent.Executor;
  * 消费者池的信息
  * @param <T>
  */
-class WorkerPoolInfo<T> implements ConsumerInfo {
+public class WorkerPoolInfo<T> implements ConsumerInfo {
     //消费者池
     private final WorkerPool<T> workerPool;
     //序号屏障
@@ -16,7 +18,7 @@ class WorkerPoolInfo<T> implements ConsumerInfo {
 
     private boolean endOfChain = true;
 
-    WorkerPoolInfo(final WorkerPool<T> workerPool, final SequenceBarrier sequenceBarrier) {
+    public WorkerPoolInfo(final WorkerPool<T> workerPool, final SequenceBarrier sequenceBarrier) {
         this.workerPool = workerPool;
         this.sequenceBarrier = sequenceBarrier;
     }
