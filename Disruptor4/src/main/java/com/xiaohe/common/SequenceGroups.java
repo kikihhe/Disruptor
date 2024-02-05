@@ -1,12 +1,9 @@
 package com.xiaohe.common;
 
 import com.xiaohe.provider.Cursored;
-
-import java.util.SimpleTimeZone;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-
 import static java.util.Arrays.copyOf;
-import static java.util.Arrays.setAll;
+
 
 /**
  * @author : 小何
