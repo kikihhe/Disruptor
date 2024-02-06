@@ -1,5 +1,6 @@
 package com.xiaohe.util;
 
+import com.xiaohe.common.Sequence;
 import sun.misc.Unsafe;
 
 import java.lang.reflect.Field;
@@ -29,5 +30,16 @@ public class Util {
     }
     public static Unsafe getUnsafe() {
         return UNSAFE;
+    }
+
+    public static long getMinimumSequence(final Sequence[] sequences) {
+        return getMinimumSequence(sequences, Long.MAX_VALUE);
+    }
+    public static long getMinimumSequence(final Sequence[] sequences, long minimum) {
+        for (int i = 0; i < sequences.length; i++) {
+            long value = sequences[i].get();
+            minimum = Math.min(value, minimum);
+        }
+        return minimum;
     }
 }

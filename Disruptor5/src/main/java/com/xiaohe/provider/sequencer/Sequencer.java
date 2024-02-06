@@ -1,6 +1,7 @@
 package com.xiaohe.provider.sequencer;
 
 import com.xiaohe.common.Sequence;
+import com.xiaohe.consumer.SequenceBarrier;
 import com.xiaohe.provider.Cursored;
 
 /**
@@ -41,7 +42,7 @@ public interface Sequencer extends Sequenced, Cursored {
      * @param sequencesToTrack 被依赖的消费者们的进度
      * @return
      */
-    public SequenceBarrire newBarrier(Sequence... sequencesToTrack);
+    public SequenceBarrier newBarrier(Sequence... sequencesToTrack);
 
     /**
      * 得到所有消费者和当前生产者序号中最小的那个
